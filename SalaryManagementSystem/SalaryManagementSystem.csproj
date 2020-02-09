@@ -83,6 +83,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Database\EmployeesDBContext.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -91,6 +92,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\EmployeeSalaryBill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
