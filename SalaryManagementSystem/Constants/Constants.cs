@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalaryManagementSystem.Constants
+namespace SalaryManagementSystem
 {
     public static class Constants
     {
