@@ -25,7 +25,7 @@ namespace SalaryManagementSystem.Model
             this.CompanyName = companyName ?? throw new ArgumentNullException(nameof(companyName));
             this.Date = date;
 
-            double SalaryForTaxes = employee.Salary > 3000 ? 3000 : employee.Salary;
+            double SalaryForTaxes = employee.Salary > Constants.Constants.MAX_INSURANCE_INCOME ? Constants.Constants.MAX_INSURANCE_INCOME : employee.Salary;
 
             //Calculate taxes
             this.DDFL = employee.Salary * (Constants.Constants.DDFL_PERCENTAGE / 100);
