@@ -12,25 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data.SQLite;
-using System.IO;
 
 namespace SalaryManagementSystem
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainMenuUserControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainMenuUserControl : UserControl
     {
-        public MainWindow()
+        public MainMenuUserControl()
         {
             InitializeComponent();
-            this.contentControl.Content = new MainMenuUserControl();
         }
 
-        public static void SetUserControl(UserControl userControl)
+        private void AddEmployeeBtn_Click(object sender, RoutedEventArgs e)
         {
-            (Application.Current.MainWindow as MainWindow).contentControl.Content = userControl;
+            MainWindow.SetUserControl(new AddEmployeeUserControl());
         }
     }
 }
