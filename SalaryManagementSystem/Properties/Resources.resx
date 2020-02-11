@@ -120,9 +120,18 @@
   <data name="AddedEmployee" xml:space="preserve">
     <value>Successfully added employee ^1 with EGN ^2!</value>
   </data>
+  <data name="CompanyNameStr" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="EGNStr" xml:space="preserve">
+    <value>EGN</value>
+  </data>
   <data name="EmployeeAlreadyExists" xml:space="preserve">
     <value>Employee with EGN ^1 already exists!</value>
     <comment>^1 will be replaced with the EGN in code.</comment>
+  </data>
+  <data name="InvalidCompanyName" xml:space="preserve">
+    <value>Company name can't be empty!</value>
   </data>
   <data name="InvalidEGNMsg" xml:space="preserve">
     <value>EGN is not valid!</value>
@@ -134,5 +143,11 @@
   <data name="InvalidSalaryMsg" xml:space="preserve">
     <value>Salary must be larger than ^1lev!</value>
     <comment>^1 will be replaced with the minimum salary constant in code.</comment>
+  </data>
+  <data name="NameStr" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SearchByStr" xml:space="preserve">
+    <value>Search by:</value>
   </data>
 </root>

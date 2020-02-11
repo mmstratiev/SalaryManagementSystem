@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -23,6 +24,8 @@
         <TextBox Name="EGNTextBox" Grid.Row="1" Grid.Column="1" MaxLength="10" PreviewTextInput="EGNTextBox_PreviewTextInput"></TextBox>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Salary:"></TextBlock>
         <TextBox Name="SalaryTextBox" Grid.Row="2" Grid.Column="1" PreviewTextInput="SalaryTextBox_PreviewTextInput"></TextBox>
-        <Button Name="SubmitBtn" Grid.Row="3" Grid.Column="0" Content="Submit" Click="SubmitBtn_Click"></Button>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Company name:"></TextBlock>
+        <TextBox Name="CompanyTextBox" Grid.Row="3" Grid.Column="1"></TextBox>
+        <Button Name="SubmitBtn" Grid.Row="4" Grid.Column="0" Content="Submit" Click="SubmitBtn_Click"></Button>
     </Grid>
 </UserControl>

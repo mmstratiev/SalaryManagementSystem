@@ -17,7 +17,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button x:Name="AddEmployeeBtn" Grid.Row="0" Grid.Column="0" Content="Add employee" HorizontalAlignment="Center" Click="AddEmployeeBtn_Click"></Button>
-        <Button Grid.Row="1" Grid.Column="0" Content="Find employee" HorizontalAlignment="Center"></Button>
+        <Button x:Name="FindEmployeeBtn" Grid.Row="1" Grid.Column="0" Content="Find employee" HorizontalAlignment="Center" Click="FindEmployeeBtn_Click"></Button>
         <Button Grid.Row="2" Grid.Column="0" Content="Show all employees" HorizontalAlignment="Center"></Button>
         <Button x:Name="ShowSalaryBillsBtn" Grid.Row="3" Grid.Column="0" Content="Show all salary bills" HorizontalAlignment="Center" Click="ShowSalaryBills_Click"></Button>
     </Grid>

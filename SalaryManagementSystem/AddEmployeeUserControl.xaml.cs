@@ -75,6 +75,13 @@ namespace SalaryManagementSystem
                                 , MessageBoxButton.OK
                                 , MessageBoxImage.Error);
             }
+            else if (CompanyTextBox.Text.Length == 0)
+            {
+                MessageBox.Show ( SalaryManagementSystem.Properties.Resources.InvalidCompanyName
+                                , "Error"
+                                , MessageBoxButton.OK
+                                , MessageBoxImage.Error);
+            }
             else
             {
                 using (var db = new EmployeesDBContext())
@@ -90,7 +97,8 @@ namespace SalaryManagementSystem
                         {
                             Name = NameTextBox.Text,
                             EGN = EGNTextBox.Text,
-                            Salary = salary
+                            Salary = salary,
+                            CompanyName = CompanyTextBox.Text
                         };
 
                         db.Employees.Add(newEmployee);

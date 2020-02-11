@@ -22,7 +22,7 @@ namespace SalaryManagementSystem.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace SalaryManagementSystem.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SalaryManagementSystem.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace SalaryManagementSystem.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,25 +63,52 @@ namespace SalaryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Successfully added employee ^1 with EGN ^2!.
         /// </summary>
-        internal static string AddedEmployee {
+        public static string AddedEmployee {
             get {
                 return ResourceManager.GetString("AddedEmployee", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company Name.
+        /// </summary>
+        public static string CompanyNameStr {
+            get {
+                return ResourceManager.GetString("CompanyNameStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EGN.
+        /// </summary>
+        public static string EGNStr {
+            get {
+                return ResourceManager.GetString("EGNStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee with EGN ^1 already exists!.
         /// </summary>
-        internal static string EmployeeAlreadyExists {
+        public static string EmployeeAlreadyExists {
             get {
                 return ResourceManager.GetString("EmployeeAlreadyExists", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company name can&apos;t be empty!.
+        /// </summary>
+        public static string InvalidCompanyName {
+            get {
+                return ResourceManager.GetString("InvalidCompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EGN is not valid!.
         /// </summary>
-        internal static string InvalidEGNMsg {
+        public static string InvalidEGNMsg {
             get {
                 return ResourceManager.GetString("InvalidEGNMsg", resourceCulture);
             }
@@ -90,7 +117,7 @@ namespace SalaryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name must be at least ^1 characters long!.
         /// </summary>
-        internal static string InvalidNameMsg {
+        public static string InvalidNameMsg {
             get {
                 return ResourceManager.GetString("InvalidNameMsg", resourceCulture);
             }
@@ -99,9 +126,27 @@ namespace SalaryManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Salary must be larger than ^1lev!.
         /// </summary>
-        internal static string InvalidSalaryMsg {
+        public static string InvalidSalaryMsg {
             get {
                 return ResourceManager.GetString("InvalidSalaryMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NameStr {
+            get {
+                return ResourceManager.GetString("NameStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search by:.
+        /// </summary>
+        public static string SearchByStr {
+            get {
+                return ResourceManager.GetString("SearchByStr", resourceCulture);
             }
         }
     }

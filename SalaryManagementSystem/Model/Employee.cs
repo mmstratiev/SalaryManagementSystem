@@ -13,13 +13,15 @@ namespace SalaryManagementSystem
         public const int MIN_NAME_LENGTH = 3;
 
         [Key]
-        public int      ID      { get; set; }
+        public int      ID          { get; set; }
         [Required]
-        public string   Name    { get; set; }
+        public string   Name        { get; set; }
         [Required]
-        public string   EGN     { get; set; }
+        public string   EGN         { get; set; }
         [Required]
-        public double   Salary  { get; set; }
+        public double   Salary      { get; set; }
+        [Required]
+        public string   CompanyName { get; set; }
 
         public static bool IsValidEGN(string EGN)
         {

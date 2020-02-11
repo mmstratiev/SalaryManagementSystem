@@ -30,6 +30,11 @@ namespace SalaryManagementSystem
             MainWindow.SetUserControl(new AddEmployeeUserControl());
         }
 
+        private void FindEmployeeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.SetUserControl(new FindEmployeeUserControl());
+        }
+
         private void ShowSalaryBills_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.SetUserControl(new ListEmployeeSalaryBills());
