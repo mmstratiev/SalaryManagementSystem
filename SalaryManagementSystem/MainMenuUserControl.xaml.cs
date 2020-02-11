@@ -29,5 +29,10 @@ namespace SalaryManagementSystem
         {
             MainWindow.SetUserControl(new AddEmployeeUserControl());
         }
+
+        private void ShowSalaryBills_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.SetUserControl(new ListEmployeeSalaryBills());
+        }
     }
 }

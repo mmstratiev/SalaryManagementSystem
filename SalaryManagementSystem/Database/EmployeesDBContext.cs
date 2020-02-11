@@ -13,5 +13,11 @@ namespace SalaryManagementSystem
     class EmployeesDBContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeSalaryBill> EmployeeSalaryBills { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EmployeeSalaryBill>().HasRequired(bill => bill.Employee);
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace SalaryManagementSystem
     {
         public const double MIN_SALARY = 610;
         public const double MAX_INSURANCE_INCOME = 3000;
-        public const double DDFL_PERCENTAGE = 2.2;
+        public const double DDFL_PERCENTAGE = 10;
+        public const double DZPO_PERCENTAGE = 2.2;
         public const double ZO_PERCENTAGE = 3.2;
         public const double DOO_PENSII_PERCENTAGE = 6.58;
         public const double DOO_ZOM_PERCENTAGE = 1.4;
