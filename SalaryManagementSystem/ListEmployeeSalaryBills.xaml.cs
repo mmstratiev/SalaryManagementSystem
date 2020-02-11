@@ -28,7 +28,7 @@ namespace SalaryManagementSystem
             using (var db = new EmployeesDBContext())
             {
                 //var tempEmp = (from e in db.Employees select e).FirstOrDefault<Employee>();
-                //var tempSalaryBill = new EmployeeSalaryBill(DateTime.Now, tempEmp);
+                //var tempSalaryBill = new EmployeeSalaryBill() { Date = DateTime.Now, Employee = tempEmp };
                 //db.EmployeeSalaryBills.Add(tempSalaryBill);
                 //db.SaveChanges();
                 var employees = db.Employees.ToList();
