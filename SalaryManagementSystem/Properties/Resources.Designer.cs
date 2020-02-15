@@ -79,6 +79,15 @@ namespace SalaryManagementSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete employee &quot;^1&quot;?.
+        /// </summary>
+        public static string DeleteEmployeeMsg {
+            get {
+                return ResourceManager.GetString("DeleteEmployeeMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EGN.
         /// </summary>
         public static string EGNStr {
@@ -93,6 +102,15 @@ namespace SalaryManagementSystem.Properties {
         public static string EmployeeAlreadyExists {
             get {
                 return ResourceManager.GetString("EmployeeAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the new salary of the employee:.
+        /// </summary>
+        public static string EnterSalaryMsg {
+            get {
+                return ResourceManager.GetString("EnterSalaryMsg", resourceCulture);
             }
         }
         

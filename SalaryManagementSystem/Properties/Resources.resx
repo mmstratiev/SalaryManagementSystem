@@ -123,12 +123,19 @@
   <data name="CompanyNameStr" xml:space="preserve">
     <value>Company Name</value>
   </data>
+  <data name="DeleteEmployeeMsg" xml:space="preserve">
+    <value>Are you sure you want to delete employee "^1"?</value>
+    <comment>^1 will be replaced in code with employee name.</comment>
+  </data>
   <data name="EGNStr" xml:space="preserve">
     <value>EGN</value>
   </data>
   <data name="EmployeeAlreadyExists" xml:space="preserve">
     <value>Employee with EGN ^1 already exists!</value>
     <comment>^1 will be replaced with the EGN in code.</comment>
+  </data>
+  <data name="EnterSalaryMsg" xml:space="preserve">
+    <value>Enter the new salary of the employee:</value>
   </data>
   <data name="InvalidCompanyName" xml:space="preserve">
     <value>Company name can't be empty!</value>

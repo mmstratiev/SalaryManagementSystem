@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
 
 namespace SalaryManagementSystem
 {
@@ -27,30 +28,106 @@ namespace SalaryManagementSystem
 
         List<Employee> searchResult;
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private void RefreshListView()
         {
             using (var db = new EmployeesDBContext())
             {
                 if (SearchByComboBox.Text == SalaryManagementSystem.Properties.Resources.NameStr)
                 {
                     searchResult = (from em in db.Employees
-                            where em.Name.Contains(SearchTextBox.Text)
-                            select em).ToList();
+                                    where em.Name.Contains(SearchTextBox.Text)
+                                    select em).ToList();
                 }
                 else if (SearchByComboBox.Text == SalaryManagementSystem.Properties.Resources.EGNStr)
                 {
                     searchResult = (from em in db.Employees
-                            where em.EGN.Contains(SearchTextBox.Text)
-                            select em).ToList();
+                                    where em.EGN.Contains(SearchTextBox.Text)
+                                    select em).ToList();
                 }
                 else if (SearchByComboBox.Text == SalaryManagementSystem.Properties.Resources.CompanyNameStr)
                 {
                     searchResult = (from em in db.Employees
-                            where em.CompanyName.Contains(SearchTextBox.Text)
-                            select em).ToList();
+                                    where em.CompanyName.Contains(SearchTextBox.Text)
+                                    select em).ToList();
                 }
             }
             EmployeesListView.ItemsSource = searchResult;
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshListView();
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Employee selectedEmployee = EmployeesListView.SelectedItem as Employee;
+            if (selectedEmployee != null)
+            {
+                using (var db = new EmployeesDBContext())
+                {
+                    var toEdit = db.Employees.SingleOrDefault(em => em.ID == selectedEmployee.ID);
+                    if (toEdit != null)
+                    {
+                        string newValue = selectedEmployee.Salary.ToString();
+                        while (newValue.Length > 0)
+                        {
+                            newValue = Interaction.InputBox ( SalaryManagementSystem.Properties.Resources.EnterSalaryMsg
+                                                            , "Input"
+                                                            , newValue);
+
+                            double newValueAsDouble;
+                            if (    Double.TryParse(newValue, out newValueAsDouble)
+                                &&  newValueAsDouble >= Constants.MIN_SALARY)
+                            {
+                                toEdit.Salary = newValueAsDouble;
+                                db.SaveChanges();
+                                RefreshListView();
+                                break;
+                            }
+                            else if(newValue.Length > 0)
+                            {
+                                string salaryMsg = SalaryManagementSystem.Properties.Resources.InvalidSalaryMsg;
+                                salaryMsg = salaryMsg.Replace("^1", Constants.MIN_SALARY.ToString());
+
+                                MessageBox.Show ( salaryMsg
+                                                , "Error"
+                                                , MessageBoxButton.OK
+                                                , MessageBoxImage.Error);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Employee selectedEmployee = EmployeesListView.SelectedItem as Employee;
+            if (selectedEmployee != null)
+            {
+                using (var db = new EmployeesDBContext())
+                {
+                    var toRemove = db.Employees.SingleOrDefault(em => em.ID == selectedEmployee.ID);
+                    if (toRemove != null)
+                    {
+                        string deleteMsg = SalaryManagementSystem.Properties.Resources.DeleteEmployeeMsg;
+                        deleteMsg = deleteMsg.Replace("^1", selectedEmployee.Name);
+
+                        MessageBoxResult messageBoxResult = MessageBox.Show ( deleteMsg
+                                                                            , "Error"
+                                                                            , MessageBoxButton.YesNo
+                                                                            , MessageBoxImage.Question);
+
+                        if (messageBoxResult == MessageBoxResult.Yes)
+                        {
+                            db.Employees.Remove(toRemove);
+                            db.SaveChanges();
+                            RefreshListView();
+                        }
+                    }
+                }
+            }
         }
     }
 }

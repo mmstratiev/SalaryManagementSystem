@@ -65,7 +65,7 @@ namespace SalaryManagementSystem
                                 , MessageBoxImage.Error);
             }
             else if (   !double.TryParse(SalaryTextBox.Text, out salary) 
-                    ||  salary <= Constants.MIN_SALARY)
+                    ||  salary < Constants.MIN_SALARY)
             {
                 string salaryMsg = SalaryManagementSystem.Properties.Resources.InvalidSalaryMsg;
                 salaryMsg = salaryMsg.Replace("^1", Constants.MIN_SALARY.ToString());
