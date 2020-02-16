@@ -151,11 +151,11 @@ namespace SalaryManagementSystem
                                 string fullFilePath = fbd.SelectedPath;
                                 if (fbd.SelectedPath.Substring(fbd.SelectedPath.Length - 1) == "\\")
                                 {
-                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xls";
+                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
                                 }
                                 else
                                 {
-                                    fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xls";
+                                    fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xlsx";
                                 }
 
                                 // Export salary bill here

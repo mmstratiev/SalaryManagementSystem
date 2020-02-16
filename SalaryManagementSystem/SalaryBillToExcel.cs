@@ -31,13 +31,10 @@ namespace SalaryManagementSystem
                 WorkSheet.Cells[1, 1] = "Фиш за работна заплата";
                 WorkSheet.Cells[1, 1].Font.Size = 15;
 
-                WorkSheet.Range[WorkSheet.Cells[2, 1], WorkSheet.Cells[2, 8]].Merge();
-                WorkSheet.Cells[2, 1] = salaryBill.Employee.Name;
-                WorkSheet.Cells[2, 1].Font.Size = 15;
 
-                WorkSheet.Range[WorkSheet.Cells[3, 1], WorkSheet.Cells[3, 8]].Merge();
-                WorkSheet.Cells[3, 1] = "Фирма: " + salaryBill.Employee.CompanyName;
-                WorkSheet.Cells[3, 1].Font.Size = 15;
+                WorkSheet.Range[WorkSheet.Cells[3, 1], WorkSheet.Cells[5, 2]].BorderAround(XlLineStyle.xlContinuous, XlBorderWeight.xlThin);
+                WorkSheet.Cells[3, 1] = "Фирма: ";
+                WorkSheet.Cells[3, 1] = salaryBill.Employee.CompanyName;
 
                 WorkSheet.Cells[4, 1] = "ЕГН: ";
                 WorkSheet.Cells[4, 2] = salaryBill.Employee.EGN;
@@ -48,16 +45,18 @@ namespace SalaryManagementSystem
                 WorkSheet.Cells[3, 7] = "Дата: ";
                 WorkSheet.Cells[3, 8] = salaryBill.Date;
 
+
+                WorkSheet.Range[WorkSheet.Cells[7, 1], WorkSheet.Cells[8, 2]].BorderAround(XlLineStyle.xlContinuous, XlBorderWeight.xlThin);
                 WorkSheet.Cells[7, 1] = "Брутно тр. възнаграждение: ";
                 WorkSheet.Cells[7, 2] = salaryBill.Employee.Salary;
 
                 WorkSheet.Cells[8, 1] = "Данъчна основа: ";
                 WorkSheet.Cells[8, 2] = salaryBill.DanychnaOsnova;
-
-                WorkSheet.Range[WorkSheet.Cells[10, 1], WorkSheet.Cells[16, 3]].Borders.LineStyle = XlLineStyle.xlContinuous;
+                
+                WorkSheet.Range[WorkSheet.Cells[10, 1], WorkSheet.Cells[16, 3]].BorderAround(XlLineStyle.xlContinuous, XlBorderWeight.xlThin);
                 WorkSheet.Range[WorkSheet.Cells[10, 1], WorkSheet.Cells[10, 3]].Borders.LineStyle = XlLineStyle.xlContinuous;
                 WorkSheet.Cells[10, 1] = "Удръжки";
-                WorkSheet.Cells[10, 2] = "Мярка";
+                WorkSheet.Cells[10, 2] = "Мярка %";
                 WorkSheet.Cells[10, 3] = "Сума";
 
                 WorkSheet.Cells[11, 1] = "ДДФЛ";
@@ -84,20 +83,34 @@ namespace SalaryManagementSystem
                 WorkSheet.Cells[16, 2] = Constants.DOO_BEZRABOTICA_PERCENTAGE;
                 WorkSheet.Cells[16, 3] = salaryBill.DOO_BEZRABOTICA;
 
-                WorkSheet.Range[WorkSheet.Cells[17, 1], WorkSheet.Cells[17, 3]].Merge();
-                WorkSheet.Cells[17, 1] = "Всико удръжки: " + (salaryBill.Employee.Salary - salaryBill.NetSalary).ToString();
+                WorkSheet.Range[WorkSheet.Cells[17, 1], WorkSheet.Cells[18, 3]].BorderAround(XlLineStyle.xlContinuous, XlBorderWeight.xlThin);
+                WorkSheet.Range[WorkSheet.Cells[17, 1], WorkSheet.Cells[17, 2]].Merge();
+                WorkSheet.Cells[17, 1] = "Всико удръжки: ";
+                WorkSheet.Cells[17, 3] = (salaryBill.Employee.Salary - salaryBill.NetSalary).ToString();
 
-                WorkSheet.Range[WorkSheet.Cells[18, 1], WorkSheet.Cells[18, 3]].Merge();
-                WorkSheet.Cells[18, 1] = "Сума за получаване: " + salaryBill.NetSalary.ToString();
+                WorkSheet.Range[WorkSheet.Cells[18, 1], WorkSheet.Cells[18, 2]].Merge();
+                WorkSheet.Cells[18, 1] = "Сума за получаване: ";
+                WorkSheet.Cells[18, 3] = salaryBill.NetSalary.ToString();
 
+                WorkSheet.Columns.AutoFit();
+                WorkSheet.Rows.AutoFit();
                 WorkBook.SaveAs(path);
+
+                Excel.Quit();
             } 
             catch (Exception ex)   
             {
-                System.Windows.MessageBox.Show(ex.Message);  
+                String errorMessage;
+                errorMessage = "Error: ";
+                errorMessage = String.Concat(errorMessage, ex.Message);
+                errorMessage = String.Concat(errorMessage, " Line: ");
+                errorMessage = String.Concat(errorMessage, ex.Source);
+
+                System.Windows.MessageBox.Show(errorMessage, "Error");
             }  
             finally   
-            {  
+            {
+                Excel = null;
                 WorkSheet = null;
                 WorkBook = null;  
             }
