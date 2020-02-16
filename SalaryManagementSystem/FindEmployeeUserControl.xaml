@@ -15,6 +15,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -35,6 +36,7 @@
         <Button x:Name="SearchBtn" Content="Search" Grid.Row="2" Click="SearchBtn_Click"></Button>
         <Button x:Name="EditBtn" Content="Edit" Grid.Row="3" Click="EditBtn_Click"></Button>
         <Button x:Name="DeleteBtn" Content="Delete" Grid.Row="4" Click="DeleteBtn_Click"></Button>
-        <ListView Name="EmployeesListView" Grid.Row="5"></ListView>
+        <Button x:Name="CreateBillBtn" Content="Create bill" Grid.Row="5" Click="CreateBillBtn_Click"></Button>
+        <ListView Name="EmployeesListView" Grid.Row="6"></ListView>
     </Grid>
 </UserControl>

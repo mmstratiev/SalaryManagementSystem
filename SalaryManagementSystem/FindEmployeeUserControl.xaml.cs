@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 using Microsoft.VisualBasic;
 
 namespace SalaryManagementSystem
@@ -124,6 +125,36 @@ namespace SalaryManagementSystem
                             db.Employees.Remove(toRemove);
                             db.SaveChanges();
                             RefreshListView();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CreateBillBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Employee selectedEmployee = EmployeesListView.SelectedItem as Employee;
+            if (selectedEmployee != null)
+            {
+                using (var db = new EmployeesDBContext())
+                {
+                    var toExport = db.Employees.SingleOrDefault(em => em.ID == selectedEmployee.ID);
+                    if (toExport != null)
+                    {
+                        using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
+                        {
+                            System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+
+                            if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                            {
+                                EmployeeSalaryBill  salaryBill      = new EmployeeSalaryBill(DateTime.Now, selectedEmployee);
+                                string              fullFilePath    = fbd.SelectedPath + "\\Bill_" + selectedEmployee.Name + ".xls";
+                                
+                                // Export salary bill here
+
+                                db.EmployeeSalaryBills.Add(salaryBill);
+                                db.SaveChanges();
+                            }
                         }
                     }
                 }
