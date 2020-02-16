@@ -7,6 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView Margin="10" Name="billsDataBinding"></ListView>
+        <ListView x:Name="listView" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="450">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Employee name" DisplayMemberBinding="{Binding Employee.Name}"/>
+                    <GridViewColumn Header="Company Name" DisplayMemberBinding="{Binding Employee.CompanyName}"/>
+                    <GridViewColumn Header="Gross Salary" DisplayMemberBinding="{Binding Employee.Salary}"/>
+                    <GridViewColumn Header="Net Salary" DisplayMemberBinding="{Binding NetSalary}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

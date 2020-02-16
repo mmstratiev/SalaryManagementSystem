@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="300"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -37,6 +37,17 @@
         <Button x:Name="EditBtn" Content="Edit" Grid.Row="3" Click="EditBtn_Click"></Button>
         <Button x:Name="DeleteBtn" Content="Delete" Grid.Row="4" Click="DeleteBtn_Click"></Button>
         <Button x:Name="CreateBillBtn" Content="Create bill" Grid.Row="5" Click="CreateBillBtn_Click"></Button>
-        <ListView Name="EmployeesListView" Grid.Row="6"></ListView>
+        <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
+            <ListView x:Name="EmployeesListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ID}"/>
+                        <GridViewColumn Header="Employee name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Company Name" DisplayMemberBinding="{Binding CompanyName}"/>
+                        <GridViewColumn Header="Gross Salary" DisplayMemberBinding="{Binding Salary}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,15 +28,11 @@ namespace SalaryManagementSystem
 
             using (var db = new EmployeesDBContext())
             {
-                //var tempEmp = (from e in db.Employees select e).FirstOrDefault<Employee>();
-                //var tempSalaryBill = new EmployeeSalaryBill(DateTime.Now, tempEmp );
-                //db.EmployeeSalaryBills.Add(tempSalaryBill);
-                //db.SaveChanges();
                 var employees = db.Employees.ToList();
                 var bills = db.EmployeeSalaryBills.ToList();
                 salaryBills = bills;
             }
-            billsDataBinding.ItemsSource = salaryBills;
+            listView.ItemsSource = salaryBills;
         }
     }
 }

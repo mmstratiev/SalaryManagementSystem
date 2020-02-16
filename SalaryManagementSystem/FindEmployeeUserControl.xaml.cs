@@ -157,8 +157,7 @@ namespace SalaryManagementSystem
                                 {
                                     fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xlsx";
                                 }
-
-                                // Export salary bill here
+                                
                                 new SalaryBillToExcel().WriteSalaryBillToExcel(salaryBill, fullFilePath);
                                 db.EmployeeSalaryBills.Add(salaryBill);
                                 db.SaveChanges();
