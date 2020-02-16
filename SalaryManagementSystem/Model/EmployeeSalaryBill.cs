@@ -14,7 +14,17 @@ namespace SalaryManagementSystem
         [Key]
         public int Id { get; private set; }
         public DateTime Date { get; private set; }
-        public virtual Employee Employee { get; private set; }
+        public virtual Employee Employee {
+            get
+            {
+                return _employee;
+            }
+            set
+            {
+                this._employee = value;
+                CalculateProperties();
+            }
+        }
         [NotMapped]
         public double DDFL { get; private set; }
         [NotMapped]
@@ -29,8 +39,12 @@ namespace SalaryManagementSystem
         public double DOO_BEZRABOTICA { get; private set; }
         [NotMapped]
         public double NetSalary { get; private set; }
+        [NotMapped]
+        public double DanychnaOsnova { get; private set; }
+        [NotMapped]
+        private Employee _employee;
 
-        public EmployeeSalaryBill() { }
+        private EmployeeSalaryBill() { }
 
         public EmployeeSalaryBill(DateTime date, Employee employee)
         {
@@ -51,11 +65,11 @@ namespace SalaryManagementSystem
             this.DOO_ZOM = SalaryForTaxes * (Constants.DOO_ZOM_PERCENTAGE / 100);
             this.DOO_BEZRABOTICA = SalaryForTaxes * (Constants.DOO_BEZRABOTICA_PERCENTAGE / 100);
 
-            double beforeDDFL = Employee.Salary - (this.DZPO + this.ZO + this.DOO_PENSII + this.DOO_ZOM + this.DOO_BEZRABOTICA);
-            this.DDFL = beforeDDFL * (Constants.DDFL_PERCENTAGE / 100);
+            this.DanychnaOsnova = Employee.Salary - (this.DZPO + this.ZO + this.DOO_PENSII + this.DOO_ZOM + this.DOO_BEZRABOTICA);
+            this.DDFL = DanychnaOsnova * (Constants.DDFL_PERCENTAGE / 100);
 
             //NET SALARY
-            this.NetSalary = beforeDDFL - this.DDFL;
+            this.NetSalary = DanychnaOsnova - this.DDFL;
         }
 
         public override String ToString()
