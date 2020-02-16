@@ -148,7 +148,15 @@ namespace SalaryManagementSystem
                             if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                             {
                                 EmployeeSalaryBill  salaryBill      = new EmployeeSalaryBill(DateTime.Now, selectedEmployee);
-                                string              fullFilePath    = fbd.SelectedPath + "Bill_" + selectedEmployee.Name + ".xls";
+                                string fullFilePath = fbd.SelectedPath;
+                                if (fbd.SelectedPath.Substring(fbd.SelectedPath.Length - 1) == "\\")
+                                {
+                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xls";
+                                }
+                                else
+                                {
+                                    fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xls";
+                                }
 
                                 // Export salary bill here
                                 new SalaryBillToExcel().WriteSalaryBillToExcel(salaryBill, fullFilePath);
