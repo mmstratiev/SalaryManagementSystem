@@ -38,13 +38,14 @@
         <Button x:Name="DeleteBtn" Content="Delete" Grid.Row="4" Click="DeleteBtn_Click"></Button>
         <Button x:Name="CreateBillBtn" Content="Create bill" Grid.Row="5" Click="CreateBillBtn_Click"></Button>
         <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
-            <ListView x:Name="EmployeesListView">
+            <ListView x:Name="EmployeesListView" GridViewColumnHeader.Click="EmployeesListView_Click">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding ID}"/>
-                        <GridViewColumn Header="Employee name" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Company Name" DisplayMemberBinding="{Binding CompanyName}"/>
-                        <GridViewColumn Header="Gross Salary" DisplayMemberBinding="{Binding Salary}"/>
+                        <GridViewColumn Width="Auto" Header="Id" DisplayMemberBinding="{Binding ID}"/>
+                        <GridViewColumn Width="Auto" Header="Employee name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Width="Auto" Header="Employee EGN" DisplayMemberBinding="{Binding EGN}"/>
+                        <GridViewColumn Width="Auto" Header="Company Name" DisplayMemberBinding="{Binding CompanyName}"/>
+                        <GridViewColumn Width="Auto" Header="Gross Salary" DisplayMemberBinding="{Binding Salary}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

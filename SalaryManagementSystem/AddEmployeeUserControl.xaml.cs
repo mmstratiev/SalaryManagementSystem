@@ -126,5 +126,10 @@ namespace SalaryManagementSystem
                 }
             }
         }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.SetUserControl(new MainMenuUserControl());
+        }
     }
 }

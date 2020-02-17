@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalaryManagementSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace SalaryManagementSystem
 {
     public partial class ListEmployeeSalaryBills : UserControl
     {
-
-        List<EmployeeSalaryBill> salaryBills;
+        List<EmployeeSalaryBill>    salaryBills;
+        ListViewColumnSorter        listViewColumnSorter;
 
         public ListEmployeeSalaryBills()
         {
             InitializeComponent();
+
+            listViewColumnSorter = new ListViewColumnSorter(listView);
 
             using (var db = new EmployeesDBContext())
             {
@@ -33,6 +36,11 @@ namespace SalaryManagementSystem
                 salaryBills = bills;
             }
             listView.ItemsSource = salaryBills;
+        }
+
+        private void ListView_Click(object sender, RoutedEventArgs e)
+        {
+            listViewColumnSorter.HandleColumnClick(sender, e);
         }
     }
 }

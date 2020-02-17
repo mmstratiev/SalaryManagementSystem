@@ -27,5 +27,6 @@
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Company name:"></TextBlock>
         <TextBox Name="CompanyTextBox" Grid.Row="3" Grid.Column="1"></TextBox>
         <Button Name="SubmitBtn" Grid.Row="4" Grid.Column="0" Content="Submit" Click="SubmitBtn_Click"></Button>
+        <Button Name="BackBtn" Grid.Row="4" Grid.Column="1" Content="Back" Click="BackBtn_Click"></Button>
     </Grid>
 </UserControl>

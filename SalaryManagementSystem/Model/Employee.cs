@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -53,7 +54,8 @@ namespace SalaryManagementSystem
 
                     // Check if date of birth is valid
                     DateTime dateOfBirth = new DateTime();
-                    if (DateTime.TryParse(String.Format("{0}/{1}/{2}", day, month, year), out dateOfBirth))
+                    CultureInfo cultureInfo = new CultureInfo("bg-BG");
+                    if (DateTime.TryParse(String.Format("{0}/{1}/{2}", day, month, year), cultureInfo, DateTimeStyles.None, out dateOfBirth))
                     {
                         int[] weights = new int[] { 2, 4, 8, 5, 10, 9, 7, 3, 6 };
                         int totalControlSum = 0;

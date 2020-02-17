@@ -7,15 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView x:Name="listView" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="450">
+        <ListView x:Name="listView" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="450" GridViewColumnHeader.Click="ListView_Click">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
-                    <GridViewColumn Header="Employee name" DisplayMemberBinding="{Binding Employee.Name}"/>
-                    <GridViewColumn Header="Company Name" DisplayMemberBinding="{Binding Employee.CompanyName}"/>
-                    <GridViewColumn Header="Gross Salary" DisplayMemberBinding="{Binding Employee.Salary}"/>
-                    <GridViewColumn Header="Net Salary" DisplayMemberBinding="{Binding NetSalary}"/>
+                    <GridViewColumn Width="Auto" Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Width="Auto" Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Width="Auto" Header="Employee name" DisplayMemberBinding="{Binding Employee.Name}"/>
+                    <GridViewColumn Width="Auto" Header="Employee EGN" DisplayMemberBinding="{Binding Employee.EGN}"/>
+                    <GridViewColumn Width="Auto" Header="Company Name" DisplayMemberBinding="{Binding Employee.CompanyName}"/>
+                    <GridViewColumn Width="Auto" Header="Gross Salary" DisplayMemberBinding="{Binding Employee.Salary}"/>
+                    <GridViewColumn Width="Auto" Header="Net Salary" DisplayMemberBinding="{Binding NetSalary}"/>
                 </GridView>
             </ListView.View>
         </ListView>

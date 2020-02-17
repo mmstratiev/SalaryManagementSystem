@@ -14,20 +14,24 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.VisualBasic;
+using SalaryManagementSystem.Model;
 
 namespace SalaryManagementSystem
 {
     /// <summary>
     /// Interaction logic for FindEmployeeUserControl.xaml
     /// </summary>
+
     public partial class FindEmployeeUserControl : UserControl
     {
+        private List<Employee>  searchResult;
+        ListViewColumnSorter    listViewColumnSorter;
         public FindEmployeeUserControl()
         {
             InitializeComponent();
-        }
 
-        List<Employee> searchResult;
+            listViewColumnSorter = new ListViewColumnSorter(EmployeesListView);
+        }
 
         private void RefreshListView()
         {
@@ -151,12 +155,14 @@ namespace SalaryManagementSystem
                                 string fullFilePath = fbd.SelectedPath;
                                 if (fbd.SelectedPath.Substring(fbd.SelectedPath.Length - 1) == "\\")
                                 {
-                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
+                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xlsx";
                                 }
                                 else
                                 {
                                     fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xlsx";
                                 }
+
+                                fullFilePath = fullFilePath.Replace("/", "_").Replace(":", "_");
                                 
                                 new SalaryBillToExcel().WriteSalaryBillToExcel(salaryBill, fullFilePath);
                                 db.EmployeeSalaryBills.Add(salaryBill);
@@ -166,6 +172,11 @@ namespace SalaryManagementSystem
                     }
                 }
             }
+        }
+
+        private void EmployeesListView_Click(object sender, RoutedEventArgs e)
+        {
+            listViewColumnSorter.HandleColumnClick(sender, e);
         }
     }
 }

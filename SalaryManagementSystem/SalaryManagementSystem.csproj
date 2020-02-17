@@ -88,6 +88,7 @@
     <Compile Include="ListEmployeeSalaryBills.xaml.cs">
       <DependentUpon>ListEmployeeSalaryBills.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ListViewColumnSorter.cs" />
     <Compile Include="SalaryBillToExcel.cs" />
     <Page Include="AddEmployeeUserControl.xaml">
       <SubType>Designer</SubType>
