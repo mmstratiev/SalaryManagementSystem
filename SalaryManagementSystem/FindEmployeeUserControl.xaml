@@ -10,6 +10,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -51,7 +52,7 @@
             <Button Width="100"  Name="BackBtn" Grid.Row="7" Content="Back" Click="BackBtn_Click"/>
         </Grid>
         <ScrollViewer Grid.Column="1" Grid.Row="0" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
-            <ListView x:Name="EmployeesListView" GridViewColumnHeader.Click="EmployeesListView_Click">
+            <ListView SelectionMode="Multiple" x:Name="EmployeesListView" GridViewColumnHeader.Click="EmployeesListView_Click">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" Header="Id" DisplayMemberBinding="{Binding ID}"/>
@@ -63,5 +64,13 @@
                 </ListView.View>
             </ListView>
         </ScrollViewer>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Width="100" Grid.Column="0" Grid.Row="0" Content="Select All" Click="SelectAll_Click"/>
+            <Button Width="100" Grid.Column="1" Grid.Row="0" Content="Deselect All" Click="DeselectAll_Click"/>
+        </Grid>
     </Grid>
 </UserControl>

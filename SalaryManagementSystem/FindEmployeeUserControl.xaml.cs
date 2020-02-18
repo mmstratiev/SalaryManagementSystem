@@ -64,8 +64,23 @@ namespace SalaryManagementSystem
             RefreshListView();
         }
 
+        private void SelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeesListView.SelectAll();
+        }
+
+        private void DeselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeesListView.UnselectAll();
+        }
+
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (EmployeesListView.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Please select just one employee!");
+                return;
+            }
             Employee selectedEmployee = EmployeesListView.SelectedItem as Employee;
             if (selectedEmployee != null)
             {
@@ -112,75 +127,53 @@ namespace SalaryManagementSystem
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            Employee selectedEmployee = EmployeesListView.SelectedItem as Employee;
-            if (selectedEmployee != null)
+            if (EmployeesListView.SelectedItems.Count == 0)
             {
-                using (var db = new EmployeesDBContext())
-                {
-                    var toRemove = db.Employees.SingleOrDefault(em => em.ID == selectedEmployee.ID);
-                    if (toRemove != null)
-                    {
-                        string deleteMsg = SalaryManagementSystem.Properties.Resources.DeleteEmployeeMsg;
-                        deleteMsg = deleteMsg.Replace("^1", selectedEmployee.Name);
-
-                        MessageBoxResult messageBoxResult = MessageBox.Show ( deleteMsg
-                                                                            , "Error"
-                                                                            , MessageBoxButton.YesNo
-                                                                            , MessageBoxImage.Question);
-
-                        if (messageBoxResult == MessageBoxResult.Yes)
-                        {
-                            db.Employees.Remove(toRemove);
-                            db.SaveChanges();
-                            RefreshListView();
-                        }
-                    }
-                }
+                MessageBox.Show(SalaryManagementSystem.Properties.Resources.SelectEmployeeMsg);
+                return;
+            }
+            MessageBoxResult messageBoxResult;
+            string deleteMsg = SalaryManagementSystem.Properties.Resources.DeleteEmployeeMsg;
+            if (EmployeesListView.SelectedItems.Count == 1)
+            {
+                deleteMsg = deleteMsg.Replace("^1", (EmployeesListView.SelectedItem as Employee).Name);
             }
             else
             {
-                MessageBox.Show(SalaryManagementSystem.Properties.Resources.SelectEmployeeMsg);
+                deleteMsg = deleteMsg.Replace("^1", "All selected employees");
             }
+            messageBoxResult = MessageBox.Show(deleteMsg
+                                                    , "Error"
+                                                    , MessageBoxButton.YesNo
+                                                    , MessageBoxImage.Question);
+            if (messageBoxResult != MessageBoxResult.OK) {return;}
+            foreach (Employee employee in EmployeesListView.SelectedItems)
+            {
+                this.DeleteEmployee(employee);
+            }
+            this.RefreshListView();
         }
 
         private void CreateBillBtn_Click(object sender, RoutedEventArgs e)
         {
-            Employee selectedEmployee = EmployeesListView.SelectedItem as Employee;
-            if (selectedEmployee != null)
-            {
-                using (var db = new EmployeesDBContext())
-                {
-                    var toExport = db.Employees.SingleOrDefault(em => em.ID == selectedEmployee.ID);
-                    if (toExport != null)
-                    {
-                        using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
-                        {
-                            System.Windows.Forms.DialogResult result = fbd.ShowDialog();
-
-                            if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                            {
-                                EmployeeSalaryBill  salaryBill      = new EmployeeSalaryBill(DateTime.Now, db.Employees.FirstOrDefault(tempE => tempE.ID == selectedEmployee.ID));
-                                string fullFilePath = fbd.SelectedPath;
-                                if (fbd.SelectedPath.Substring(fbd.SelectedPath.Length - 1) == "\\")
-                                {
-                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
-                                }
-                                else
-                                {
-                                    fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
-                                }
-                                
-                                SalaryBillToExcel.WriteSalaryBillToExcel(salaryBill, fullFilePath);
-                                db.EmployeeSalaryBills.Add(salaryBill);
-                                db.SaveChanges();
-                            }
-                        }
-                    }
-                }
-            }
-            else
+            if (EmployeesListView.SelectedItems.Count == 0)
             {
                 MessageBox.Show(SalaryManagementSystem.Properties.Resources.SelectEmployeeMsg);
+                return;
+            }
+            using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string targetFolderPath = fbd.SelectedPath;
+                    foreach (Employee employee in EmployeesListView.SelectedItems)
+                    {
+                        this.CreateBill(employee, targetFolderPath);
+                    }
+                    System.Diagnostics.Process.Start(targetFolderPath);
+                    MessageBox.Show("Done!");
+                }
             }
         }
 
@@ -192,6 +185,45 @@ namespace SalaryManagementSystem
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.SetUserControl(new MainMenuUserControl());
+        }
+
+        private void CreateBill(Employee employee, string targetFolderPath)
+        {
+            using (var db = new EmployeesDBContext())
+            {
+                var toExport = db.Employees.SingleOrDefault(em => em.ID == employee.ID);
+                if (toExport != null)
+                {
+                    
+                    EmployeeSalaryBill salaryBill = new EmployeeSalaryBill(DateTime.Now, toExport);
+                        
+                    if (targetFolderPath.Substring(targetFolderPath.Length - 1) == "\\")
+                    {
+                        targetFolderPath += "Bill_" + toExport.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
+                    }
+                    else
+                    {
+                        targetFolderPath += "\\Bill_" + toExport.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
+                    }
+
+                    SalaryBillToExcel.WriteSalaryBillToExcel(salaryBill, targetFolderPath);
+                    db.EmployeeSalaryBills.Add(salaryBill);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        private void DeleteEmployee(Employee employee)
+        {
+            using (var db = new EmployeesDBContext())
+            {
+                var toRemove = db.Employees.SingleOrDefault(em => em.ID == employee.ID);
+                if (toRemove != null)
+                {
+                    db.Employees.Remove(toRemove);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }

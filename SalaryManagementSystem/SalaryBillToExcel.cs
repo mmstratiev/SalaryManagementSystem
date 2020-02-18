@@ -10,21 +10,19 @@ namespace SalaryManagementSystem
     static class SalaryBillToExcel
     {
         static Application Excel;
-        static Workbook WorkBook;
-        static Worksheet WorkSheet;
+
 
         public static void WriteSalaryBillToExcel(EmployeeSalaryBill salaryBill, String path)
         {
             try
             {
-                Excel = new Application
+                Application Excel = new Application
                 {
                     Visible = false,
                     DisplayAlerts = false
                 };
-                WorkBook = Excel.Workbooks.Add(Type.Missing);
-
-                WorkSheet = (Worksheet)WorkBook.ActiveSheet;
+                Workbook WorkBook = Excel.Workbooks.Add(Type.Missing);
+                Worksheet WorkSheet = (Worksheet)WorkBook.ActiveSheet;
                 WorkSheet.Name = salaryBill.Employee.Name;
 
                 WorkSheet.Range[WorkSheet.Cells[1, 1], WorkSheet.Cells[1, 8]].Merge();
@@ -111,8 +109,6 @@ namespace SalaryManagementSystem
             finally   
             {
                 Excel = null;
-                WorkSheet = null;
-                WorkBook = null;  
             }
         }
     }
