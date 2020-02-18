@@ -42,5 +42,10 @@ namespace SalaryManagementSystem
         {
             listViewColumnSorter.HandleColumnClick(sender, e);
         }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.SetUserControl(new MainMenuUserControl());
+        }
     }
 }

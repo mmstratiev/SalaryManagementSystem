@@ -7,13 +7,13 @@ using Microsoft.Office.Interop.Excel;
 
 namespace SalaryManagementSystem
 {
-    class SalaryBillToExcel
+    static class SalaryBillToExcel
     {
-        Application Excel;
-        Workbook WorkBook;
-        Worksheet WorkSheet;
+        static Application Excel;
+        static Workbook WorkBook;
+        static Worksheet WorkSheet;
 
-        public void WriteSalaryBillToExcel(EmployeeSalaryBill salaryBill, String path)
+        public static void WriteSalaryBillToExcel(EmployeeSalaryBill salaryBill, String path)
         {
             try
             {
@@ -115,7 +115,5 @@ namespace SalaryManagementSystem
                 WorkBook = null;  
             }
         }
-
-        
     }
 }

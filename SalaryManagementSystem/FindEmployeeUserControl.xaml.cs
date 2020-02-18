@@ -104,6 +104,10 @@ namespace SalaryManagementSystem
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show(SalaryManagementSystem.Properties.Resources.SelectEmployeeMsg);
+            }
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -133,6 +137,10 @@ namespace SalaryManagementSystem
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show(SalaryManagementSystem.Properties.Resources.SelectEmployeeMsg);
+            }
         }
 
         private void CreateBillBtn_Click(object sender, RoutedEventArgs e)
@@ -151,20 +159,18 @@ namespace SalaryManagementSystem
 
                             if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                             {
-                                EmployeeSalaryBill  salaryBill      = new EmployeeSalaryBill(DateTime.Now, selectedEmployee);
+                                EmployeeSalaryBill  salaryBill      = new EmployeeSalaryBill(DateTime.Now, db.Employees.FirstOrDefault(tempE => tempE.ID == selectedEmployee.ID));
                                 string fullFilePath = fbd.SelectedPath;
                                 if (fbd.SelectedPath.Substring(fbd.SelectedPath.Length - 1) == "\\")
                                 {
-                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xlsx";
+                                    fullFilePath += "Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
                                 }
                                 else
                                 {
-                                    fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString() + ".xlsx";
+                                    fullFilePath += "\\Bill_" + selectedEmployee.Name + "_" + salaryBill.Date.ToString().Replace("/", "_").Replace(":", "_") + ".xlsx";
                                 }
-
-                                fullFilePath = fullFilePath.Replace("/", "_").Replace(":", "_");
                                 
-                                new SalaryBillToExcel().WriteSalaryBillToExcel(salaryBill, fullFilePath);
+                                SalaryBillToExcel.WriteSalaryBillToExcel(salaryBill, fullFilePath);
                                 db.EmployeeSalaryBills.Add(salaryBill);
                                 db.SaveChanges();
                             }
@@ -172,11 +178,20 @@ namespace SalaryManagementSystem
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show(SalaryManagementSystem.Properties.Resources.SelectEmployeeMsg);
+            }
         }
 
         private void EmployeesListView_Click(object sender, RoutedEventArgs e)
         {
             listViewColumnSorter.HandleColumnClick(sender, e);
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.SetUserControl(new MainMenuUserControl());
         }
     }
 }

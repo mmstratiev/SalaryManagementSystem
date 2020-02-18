@@ -167,5 +167,14 @@ namespace SalaryManagementSystem.Properties {
                 return ResourceManager.GetString("SearchByStr", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an employee first..
+        /// </summary>
+        public static string SelectEmployeeMsg {
+            get {
+                return ResourceManager.GetString("SelectEmployeeMsg", resourceCulture);
+            }
+        }
     }
 }

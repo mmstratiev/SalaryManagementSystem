@@ -157,4 +157,7 @@
   <data name="SearchByStr" xml:space="preserve">
     <value>Search by:</value>
   </data>
+  <data name="SelectEmployeeMsg" xml:space="preserve">
+    <value>Please select an employee first.</value>
+  </data>
 </root>
