@@ -146,7 +146,7 @@ namespace SalaryManagementSystem
                                                     , "Error"
                                                     , MessageBoxButton.YesNo
                                                     , MessageBoxImage.Question);
-            if (messageBoxResult != MessageBoxResult.OK) {return;}
+            if (messageBoxResult != MessageBoxResult.Yes) {return;}
             foreach (Employee employee in EmployeesListView.SelectedItems)
             {
                 this.DeleteEmployee(employee);

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SalaryManagementSystem.Model.ListViewColumnSorter">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAABAAAACgAAAIAAAAA=</HashCode>
+      <FileName>Model\ListViewColumnSorter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SalaryManagementSystem.Employee">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQCAAAAAAgAAEAAAAAAQAAAAAAACABAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SalaryManagementSystem.EmployeeSalaryBill">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACCAAAAAAABAAIEAQAAAAgECAAAAAABCAAAAABBAAA=</HashCode>
+      <FileName>Model\EmployeeSalaryBill.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_employee" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SalaryManagementSystem.EmployeesDBContext">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAGACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\EmployeesDBContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Employees" />
+      <Property Name="EmployeeSalaryBills" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SalaryManagementSystem.Constants">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAQAIggAAAAAAAAQAAAAAAAAAAAAAEAAAQAAA=</HashCode>
+      <FileName>Constants\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SalaryManagementSystem.AddEmployeeUserControl">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgIAQAEAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AddEmployeeUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SalaryManagementSystem.FindEmployeeUserControl">
+    <Position X="10.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAgAAAIAQIABAAAAAAAAAAAAAQgACAgAAACACAEAAA=</HashCode>
+      <FileName>FindEmployeeUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="listViewColumnSorter" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SalaryManagementSystem.ListEmployeeSalaryBills">
+    <Position X="12.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ListEmployeeSalaryBills.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="listViewColumnSorter" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SalaryManagementSystem.MainMenuUserControl">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainMenuUserControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SalaryManagementSystem.SalaryBillToExcel">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>SalaryBillToExcel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
